@@ -23,20 +23,10 @@
         <a href="#about">About</a>
         <a href="#case-studies">Case Studies</a>
         <a href="#blog">Blog</a>
-        <div class="dropdown">
-          <button class="dropdown__toggle" type="button" aria-expanded="false" aria-haspopup="true">
-            Pages
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m2.5 4.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="dropdown__menu">
-            <a href="#top">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#case-studies">Casestudy</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#blog">Blog</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
+        <button class="dropdown__toggle" id="pagesToggle" type="button" aria-expanded="false" aria-controls="mega">
+          Pages
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m2.5 4.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
         <a href="#contact" class="btn btn--light navbar__cta-mobile">Contact <span class="arr">→</span></a>
       </nav>
 
@@ -45,6 +35,48 @@
       <button class="navbar__burger" id="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span>
       </button>
+    </div>
+    <div class="mega" id="mega">
+      <div class="container">
+        <div class="linkcols">
+        <div>
+          <h4>Main Pages</h4>
+          <ul>
+            <li><a href="#top">Home <span class="arr">→</span></a></li>
+            <li><a href="#about">About Us <span class="arr">→</span></a></li>
+            <li><a href="#case-studies">Casestudy <span class="arr">→</span></a></li>
+            <li><a href="#pricing">Pricing <span class="arr">→</span></a></li>
+            <li><a href="#blog">Blog <span class="arr">→</span></a></li>
+            <li><a href="#top">Career <span class="arr">→</span></a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Inner Pages</h4>
+          <ul>
+            <li><a href="#contact">Contact <span class="arr">→</span></a></li>
+            <li><a href="#case-studies">Casestudy Details <span class="arr">→</span></a></li>
+            <li><a href="#blog">Blog Details <span class="arr">→</span></a></li>
+            <li><a href="#top">Career Details <span class="arr">→</span></a></li>
+          </ul>
+        </div>
+        <div class="col-utility">
+          <h4>Utility Pages</h4>
+          <ul>
+            <li><a href="#top">404 Not Found <span class="arr">→</span></a></li>
+          </ul>
+        </div>
+        <div class="col-social">
+          <h4>Social</h4>
+          <ul>
+            <li><a href="https://www.facebook.com">Facebook <span class="arr">→</span></a></li>
+            <li><a href="https://www.youtube.com">Youtube <span class="arr">→</span></a></li>
+            <li><a href="https://www.linkedin.com">LinkedIn <span class="arr">→</span></a></li>
+            <li><a href="https://www.instagram.com">Instagram <span class="arr">→</span></a></li>
+            <li><a href="https://www.x.com">Twitter <span class="arr">→</span></a></li>
+          </ul>
+        </div>
+      </div>
+      </div>
     </div>
   </header>
 
@@ -57,7 +89,7 @@
       <div class="container hero__inner">
         <div class="hero__left">
           <div class="ticker" aria-hidden="true">
-            <div class="ticker__track">
+            <div class="ticker__track" data-speed="11.5">
               <span>revenue by up to 40%</span><i>✱</i><span>Trusted by 100+ founders</span><i>✱</i><span>150+ successful engagements</span><i>✱</i>
               <span>revenue by up to 40%</span><i>✱</i><span>Trusted by 100+ founders</span><i>✱</i><span>150+ successful engagements</span><i>✱</i>
             </div>
@@ -75,7 +107,10 @@
     <section class="partners">
       <p class="partners__title">Trusted by startups, scaleups, and established brands</p>
       <div class="marquee marquee--fade" aria-hidden="true">
-        <div class="marquee__track" style="--duration:30s">
+        <div class="marquee__track marquee__track--static">
+          <div class="marquee__group">
+            <img src="assets/img/partner-1.svg" alt="" height="30"><img src="assets/img/partner-2.svg" alt="" height="30"><img src="assets/img/partner-3.svg" alt="" height="30"><img src="assets/img/partner-4.svg" alt="" height="28"><img src="assets/img/partner-5.svg" alt="" height="30"><img src="assets/img/partner-6.svg" alt="" height="30">
+          </div>
           <div class="marquee__group">
             <img src="assets/img/partner-1.svg" alt="" height="30"><img src="assets/img/partner-2.svg" alt="" height="30"><img src="assets/img/partner-3.svg" alt="" height="30"><img src="assets/img/partner-4.svg" alt="" height="28"><img src="assets/img/partner-5.svg" alt="" height="30"><img src="assets/img/partner-6.svg" alt="" height="30">
           </div>
@@ -198,18 +233,22 @@
           <a class="case" href="#case-studies" style="--i:0">
             <img src="assets/img/case-1.png" alt="" loading="lazy">
             <div class="case__info"><strong>35%</strong><span>Revenue increase within 6 months.</span></div>
+            <span class="case__btn">View Case Study <span class="arr">→</span></span>
           </a>
           <a class="case" href="#case-studies" style="--i:1">
             <img src="assets/img/case-2.png" alt="" loading="lazy">
             <div class="case__info"><strong>2x</strong><span>Increase in qualified leads in 4 months.</span></div>
+            <span class="case__btn">View Case Study <span class="arr">→</span></span>
           </a>
           <a class="case" href="#case-studies" style="--i:2">
             <img src="assets/img/case-3.png" alt="" loading="lazy">
             <div class="case__info"><strong>40%</strong><span>Improvement in team productivity.</span></div>
+            <span class="case__btn">View Case Study <span class="arr">→</span></span>
           </a>
           <a class="case" href="#case-studies" style="--i:3">
             <img src="assets/img/case-4.png" alt="" loading="lazy">
             <div class="case__info"><strong>28%</strong><span>Increase in repeat purchases within 5 months.</span></div>
+            <span class="case__btn">View Case Study <span class="arr">→</span></span>
           </a>
         </div>
       </div>
@@ -223,37 +262,41 @@
           <h2 class="h2">What Our Clients <em>Say</em></h2>
         </header>
       </div>
+      <div class="quotes">
       <div class="marquee marquee--fade marquee--cards" data-pause>
-        <div class="marquee__track" style="--duration:60s">
+        <div class="marquee__track" data-speed="40">
           <div class="marquee__group">
             <article class="quote"><img class="quote__logo" src="assets/img/t-ethan-logo.svg" alt="" height="20"><p>“The strategic clarity we gained transformed how we make decisions. Within a few months, performance became far more predictable.”</p><footer><img src="assets/img/avatar-1.png" alt="" width="50" height="50"><div><strong>Ethan Walker</strong><span>Founder, Silverline Systems</span></div></footer></article>
             <article class="quote"><img class="quote__logo" src="assets/img/t-olivia-logo.svg" alt="" height="20"><p>“The strategic clarity we gained transformed how we make decisions. Within a few months, performance became far more predictable.”</p><footer><img src="assets/img/avatar-2.png" alt="" width="50" height="50"><div><strong>Olivia Turner</strong><span>CEO, Meridian Retail Group</span></div></footer></article>
             <article class="quote"><img class="quote__logo" src="assets/img/t-christopher-logo.svg" alt="" height="20"><p>“This was not just advice. It was a true partnership that delivered measurable progress across our operations and growth strategy.”</p><footer><img src="assets/img/avatar-3.png" alt="" width="50" height="50"><div><strong>Christopher Hayes</strong><span>Managing Director, Northpeak Consulting</span></div></footer></article>
             <article class="quote"><img class="quote__logo" src="assets/img/t-natalie-logo.svg" alt="" height="20"><p>“We finally moved from uncertainty to a clear roadmap. The impact on revenue and team alignment was immediate.”</p><footer><img src="assets/img/avatar-4.png" alt="" width="50" height="50"><div><strong>Natalie Brooks</strong><span>Co-Founder, Brightpath Digital</span></div></footer></article>
+            <article class="quote"><img class="quote__logo" src="assets/img/t-ryan-logo.svg" alt="" height="20"><p>“Professional, insightful, and results-focused. One of the most valuable strategic investments we’ve made.”</p><footer><img src="assets/img/avatar-5.png" alt="" width="50" height="50"><div><strong>Ryan Mitchell</strong><span>Director, Elevon Technologies</span></div></footer></article>
           </div>
           <div class="marquee__group" aria-hidden="true">
             <article class="quote"><img class="quote__logo" src="assets/img/t-ethan-logo.svg" alt="" height="20"><p>“The strategic clarity we gained transformed how we make decisions. Within a few months, performance became far more predictable.”</p><footer><img src="assets/img/avatar-1.png" alt="" width="50" height="50"><div><strong>Ethan Walker</strong><span>Founder, Silverline Systems</span></div></footer></article>
             <article class="quote"><img class="quote__logo" src="assets/img/t-olivia-logo.svg" alt="" height="20"><p>“The strategic clarity we gained transformed how we make decisions. Within a few months, performance became far more predictable.”</p><footer><img src="assets/img/avatar-2.png" alt="" width="50" height="50"><div><strong>Olivia Turner</strong><span>CEO, Meridian Retail Group</span></div></footer></article>
             <article class="quote"><img class="quote__logo" src="assets/img/t-christopher-logo.svg" alt="" height="20"><p>“This was not just advice. It was a true partnership that delivered measurable progress across our operations and growth strategy.”</p><footer><img src="assets/img/avatar-3.png" alt="" width="50" height="50"><div><strong>Christopher Hayes</strong><span>Managing Director, Northpeak Consulting</span></div></footer></article>
             <article class="quote"><img class="quote__logo" src="assets/img/t-natalie-logo.svg" alt="" height="20"><p>“We finally moved from uncertainty to a clear roadmap. The impact on revenue and team alignment was immediate.”</p><footer><img src="assets/img/avatar-4.png" alt="" width="50" height="50"><div><strong>Natalie Brooks</strong><span>Co-Founder, Brightpath Digital</span></div></footer></article>
+            <article class="quote"><img class="quote__logo" src="assets/img/t-ryan-logo.svg" alt="" height="20"><p>“Professional, insightful, and results-focused. One of the most valuable strategic investments we’ve made.”</p><footer><img src="assets/img/avatar-5.png" alt="" width="50" height="50"><div><strong>Ryan Mitchell</strong><span>Director, Elevon Technologies</span></div></footer></article>
           </div>
         </div>
       </div>
       <div class="marquee marquee--fade marquee--cards marquee--reverse" data-pause>
-        <div class="marquee__track" style="--duration:60s">
+        <div class="marquee__track" data-speed="40">
           <div class="marquee__group">
-            <article class="quote"><img class="quote__logo" src="assets/img/t-victoria-logo.svg" alt="" height="20"><p>“Their guidance helped us refine positioning, improve execution, and achieve steady, sustainable growth.”</p><footer><img src="assets/img/avatar-1.png" alt="" width="50" height="50"><div><strong>Victoria Lane</strong><span>CEO, Harborview Solutions</span></div></footer></article>
-            <article class="quote"><img class="quote__logo" src="assets/img/t-lucas-logo.svg" alt="" height="20"><p>“They helped us simplify complex challenges into a clear, actionable strategy. The improvement in focus and results was immediate.”</p><footer><img src="assets/img/avatar-2.png" alt="" width="50" height="50"><div><strong>Lucas Bennett</strong><span>Founder, Crestwood Ventures</span></div></footer></article>
-            <article class="quote"><img class="quote__logo" src="assets/img/t-grace-logo.svg" alt="" height="20"><p>“Our leadership team gained clarity, structure, and confidence in a very short time. The strategic impact has been lasting.”</p><footer><img src="assets/img/avatar-3.png" alt="" width="50" height="50"><div><strong>Grace Coleman</strong><span>CEO, Northfield Group</span></div></footer></article>
             <article class="quote"><img class="quote__logo" src="assets/img/t-adrian-logo.svg" alt="" height="20"><p>“What stood out most was the balance between insight and execution. Every recommendation was practical and measurable.”</p><footer><img src="assets/img/avatar-4.png" alt="" width="50" height="50"><div><strong>Adrian Foster</strong><span>Director, Summitcore Technologies</span></div></footer></article>
+            <article class="quote"><img class="quote__logo" src="assets/img/t-grace-logo.svg" alt="" height="20"><p>“Our leadership team gained clarity, structure, and confidence in a very short time. The strategic impact has been lasting.”</p><footer><img src="assets/img/avatar-3.png" alt="" width="50" height="50"><div><strong>Grace Coleman</strong><span>CEO, Northfield Group</span></div></footer></article>
+            <article class="quote"><img class="quote__logo" src="assets/img/t-lucas-logo.svg" alt="" height="20"><p>“They helped us simplify complex challenges into a clear, actionable strategy. The improvement in focus and results was immediate.”</p><footer><img src="assets/img/avatar-2.png" alt="" width="50" height="50"><div><strong>Lucas Bennett</strong><span>Founder, Crestwood Ventures</span></div></footer></article>
+            <article class="quote"><img class="quote__logo" src="assets/img/t-victoria-logo.svg" alt="" height="20"><p>“Their guidance helped us refine positioning, improve execution, and achieve steady, sustainable growth.”</p><footer><img src="assets/img/avatar-1.png" alt="" width="50" height="50"><div><strong>Victoria Lane</strong><span>CEO, Harborview Solutions</span></div></footer></article>
           </div>
           <div class="marquee__group" aria-hidden="true">
-            <article class="quote"><img class="quote__logo" src="assets/img/t-victoria-logo.svg" alt="" height="20"><p>“Their guidance helped us refine positioning, improve execution, and achieve steady, sustainable growth.”</p><footer><img src="assets/img/avatar-1.png" alt="" width="50" height="50"><div><strong>Victoria Lane</strong><span>CEO, Harborview Solutions</span></div></footer></article>
-            <article class="quote"><img class="quote__logo" src="assets/img/t-lucas-logo.svg" alt="" height="20"><p>“They helped us simplify complex challenges into a clear, actionable strategy. The improvement in focus and results was immediate.”</p><footer><img src="assets/img/avatar-2.png" alt="" width="50" height="50"><div><strong>Lucas Bennett</strong><span>Founder, Crestwood Ventures</span></div></footer></article>
-            <article class="quote"><img class="quote__logo" src="assets/img/t-grace-logo.svg" alt="" height="20"><p>“Our leadership team gained clarity, structure, and confidence in a very short time. The strategic impact has been lasting.”</p><footer><img src="assets/img/avatar-3.png" alt="" width="50" height="50"><div><strong>Grace Coleman</strong><span>CEO, Northfield Group</span></div></footer></article>
             <article class="quote"><img class="quote__logo" src="assets/img/t-adrian-logo.svg" alt="" height="20"><p>“What stood out most was the balance between insight and execution. Every recommendation was practical and measurable.”</p><footer><img src="assets/img/avatar-4.png" alt="" width="50" height="50"><div><strong>Adrian Foster</strong><span>Director, Summitcore Technologies</span></div></footer></article>
+            <article class="quote"><img class="quote__logo" src="assets/img/t-grace-logo.svg" alt="" height="20"><p>“Our leadership team gained clarity, structure, and confidence in a very short time. The strategic impact has been lasting.”</p><footer><img src="assets/img/avatar-3.png" alt="" width="50" height="50"><div><strong>Grace Coleman</strong><span>CEO, Northfield Group</span></div></footer></article>
+            <article class="quote"><img class="quote__logo" src="assets/img/t-lucas-logo.svg" alt="" height="20"><p>“They helped us simplify complex challenges into a clear, actionable strategy. The improvement in focus and results was immediate.”</p><footer><img src="assets/img/avatar-2.png" alt="" width="50" height="50"><div><strong>Lucas Bennett</strong><span>Founder, Crestwood Ventures</span></div></footer></article>
+            <article class="quote"><img class="quote__logo" src="assets/img/t-victoria-logo.svg" alt="" height="20"><p>“Their guidance helped us refine positioning, improve execution, and achieve steady, sustainable growth.”</p><footer><img src="assets/img/avatar-1.png" alt="" width="50" height="50"><div><strong>Victoria Lane</strong><span>CEO, Harborview Solutions</span></div></footer></article>
           </div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -481,7 +524,7 @@
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__cols">
+      <div class="linkcols footer__cols">
         <div>
           <h4>Main Pages</h4>
           <ul>
@@ -502,13 +545,13 @@
             <li><a href="#top">Career Details <span class="arr">→</span></a></li>
           </ul>
         </div>
-        <div>
+        <div class="col-utility">
           <h4>Utility Pages</h4>
           <ul>
             <li><a href="#top">404 Not Found <span class="arr">→</span></a></li>
           </ul>
         </div>
-        <div>
+        <div class="col-social">
           <h4>Social</h4>
           <ul>
             <li><a href="https://www.facebook.com">Facebook <span class="arr">→</span></a></li>

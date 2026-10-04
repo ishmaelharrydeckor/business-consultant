@@ -8,36 +8,35 @@
   /* ---------- Navbar: scrolled state, mobile menu, dropdown ---------- */
   var navbar = $('#navbar');
   var burger = $('#burger');
-
-  function onScroll() {
-    navbar.classList.toggle('is-scrolled', window.scrollY > 40);
-  }
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  var pagesToggle = $('#pagesToggle');
 
   function setMenu(open) {
     navbar.classList.toggle('is-menu-open', open);
     burger.setAttribute('aria-expanded', String(open));
   }
+  function setMega(open) {
+    navbar.classList.toggle('is-mega-open', open);
+    pagesToggle.setAttribute('aria-expanded', String(open));
+  }
   burger.addEventListener('click', function () {
+    if (navbar.classList.contains('is-mega-open')) { setMega(false); setMenu(false); return; }
     setMenu(!navbar.classList.contains('is-menu-open'));
   });
-  $$('#navLinks a').forEach(function (a) {
-    a.addEventListener('click', function () { setMenu(false); });
+  $$('#navLinks > a').forEach(function (a) {
+    a.addEventListener('click', function () { setMenu(false); setMega(false); });
   });
-
-  var dropdown = $('.dropdown');
-  var toggle = $('.dropdown__toggle', dropdown);
-  toggle.addEventListener('click', function (e) {
+  pagesToggle.addEventListener('click', function (e) {
     e.stopPropagation();
-    var open = dropdown.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(open));
+    setMega(!navbar.classList.contains('is-mega-open'));
+  });
+  $$('#mega a').forEach(function (a) {
+    a.addEventListener('click', function () { setMega(false); setMenu(false); });
   });
   document.addEventListener('click', function (e) {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
+    if (!navbar.contains(e.target)) setMega(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { setMega(false); setMenu(false); }
   });
 
   /* ---------- Active nav link while scrolling ---------- */
@@ -90,17 +89,69 @@
     });
   });
 
-  /* ---------- Advisors carousel ---------- */
-  var track = $('#advTrack');
-  function step() {
-    var card = $('.advisor', track);
-    return card ? card.getBoundingClientRect().width + 20 : 400;
+  /* ---------- Marquee speeds (px/s) ---------- */
+  function setMarqueeSpeeds() {
+    $$('[data-speed]').forEach(function (track) {
+      var speed = parseFloat(track.dataset.speed);
+      var group = track.firstElementChild;
+      var w = track.classList.contains('ticker__track') ? track.scrollWidth / 2 : group.offsetWidth;
+      if (w && speed) {
+        if (track.classList.contains('ticker__track')) track.style.animationDuration = (w / speed) + 's';
+        else track.style.setProperty('--duration', (w / speed) + 's');
+      }
+    });
   }
+  setMarqueeSpeeds();
+  window.addEventListener('load', setMarqueeSpeeds);
+  window.addEventListener('resize', setMarqueeSpeeds);
+
+  /* ---------- Advisors carousel (centered, infinite) ---------- */
+  var track = $('#advTrack');
+  var originals = $$('.advisor', track);
+  var count = originals.length;
+  [-1, 1].forEach(function (dir) {
+    var frag = document.createDocumentFragment();
+    originals.forEach(function (card) {
+      var copy = card.cloneNode(true);
+      copy.setAttribute('aria-hidden', 'true');
+      $$('a', copy).forEach(function (a) { a.tabIndex = -1; });
+      frag.appendChild(copy);
+    });
+    if (dir < 0) track.insertBefore(frag, track.firstChild); else track.appendChild(frag);
+  });
+  function cardPitch() {
+    var card = $('.advisor', track);
+    return card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 20);
+  }
+  function setStart() {
+    track.style.scrollSnapType = 'none';
+    track.scrollLeft = cardPitch() * count;
+    requestAnimationFrame(function () { track.style.scrollSnapType = ''; });
+  }
+  setStart();
+  window.addEventListener('resize', setStart);
+
+  var settle;
+  track.addEventListener('scroll', function () {
+    clearTimeout(settle);
+    settle = setTimeout(function () {
+      var pitch = cardPitch(), set = pitch * count;
+      var jump = 0;
+      if (track.scrollLeft < set * 0.5) jump = set;
+      else if (track.scrollLeft > set * 1.5) jump = -set;
+      if (jump) {
+        track.style.scrollSnapType = 'none';
+        track.scrollLeft += jump;
+        requestAnimationFrame(function () { track.style.scrollSnapType = ''; });
+      }
+    }, 120);
+  }, { passive: true });
+
   $('#advPrev').addEventListener('click', function () {
-    track.scrollBy({ left: -step(), behavior: 'smooth' });
+    track.scrollBy({ left: -cardPitch(), behavior: 'smooth' });
   });
   $('#advNext').addEventListener('click', function () {
-    track.scrollBy({ left: step(), behavior: 'smooth' });
+    track.scrollBy({ left: cardPitch(), behavior: 'smooth' });
   });
 
   /* ---------- Stat counters + reveal on scroll ---------- */
